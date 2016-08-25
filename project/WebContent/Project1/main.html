@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+  $(window).resize(function(){
+    var windowH = $(window).height();
+    var header = $("#header").outerHeight();
+    var footer = $("#footer").outerHeight();
+    $("#contents").css("min-height" , windowH - header - footer -12); 
+  });
+  $(window).trigger("resize");
+});
+
+
+//]]>
+
+
+</script>
+ <style type="text/css">
+ *{
+  padding:0;
+  margin:0;
+}
+
+html, body{
+  height:100%;
+}
+
+body{ 
+  line-height:1.5;  
+  font-size:75%;  
+  font-family:"돋움", Dotum, "굴림", Gulim, AppleGothic, Sans-serif;  
+  color:#000; 
+} 
+
+a:link, a:visited{ 
+  text-decoration:none;  
+  color:#000; 
+} 
+
+a:hover{ 
+  text-decoration:none;  
+  color:#f00; 
+} 
+
+ul, ol{ 
+  list-style:none; 
+}
+
+#header{ 
+  height:100px;  
+  padding:15px 0 0 3em;  
+  background:#ddd;
+}
+
+#contents ul{ 
+  padding:10px 0 0 3em; 
+}
+
+#contents ul li{ 
+  margin-bottom:1em; 
+}
+
+#contents ul li a{ 
+  margin-left:1em;  
+  vertical-align:bottom; 
+}
+
+#footer{ 
+  height:100px;  
+  padding:15px 0 0 3em;  
+  background:#ddd; 
+}
+
+
+.menubar{
+border:none;
+border:0px;
+margin:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+}
+
+.menubar ul{
+background: rgb(109,109,109);
+height:50px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: rgb(109,109,109);
+color:#cccccc;
+display:block;
+font-weight:normal;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: rgb(71,71,71);
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: rgb(109,109,109);
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+width:200px;
+z-index:200;
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+background: rgb(109,109,109);
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:200px;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+height:50px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: rgb(71,71,71);
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+ <div id="header">
+       <p>header 화면</p>
+    </div>
+
+
+<div class="menubar">
+   <ul>
+      <li><a href="#">홈</a></li>
+     
+       <li><a href="notice.html">공지사항</a></li>
+      
+      <li><a href="#" id="current">개인프로젝트관리</a>
+         <ul>
+           <li><a href="#">프로젝트 이력 목록</a></li>
+           <li><a href="#">프로젝트 이력 등록</a></li>
+           
+         </ul>  
+      </li>
+      
+      <li><a href="#">개인정보관리</a>
+       <ul>
+           <li><a href="#">사원정보목록</a></li>
+           <li><a href="#">사원정보수정</a></li>
+           
+         </ul>  
+     </li>
+      
+     
+   </ul>
+</div>
+
+   
+
+     <div id="contents">
+  		 <p>contents 화면</p>
+  		
+    </div>
+
+     <div id="footer">
+        <p>footer 화면</p>
+    </div>
+</body>
+
+</html>
+

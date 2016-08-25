@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+         $(".subtitle").click(function(){   //  div(subtitle)을 클릭 했을떄 
+    
+                  $('.sub1').slideUp();   //  ul(sub1)을 슬라이드 업 시켰습니다.
+                  $(this).next().slideDown();   // 다른걸 클릭했을때  ul(sub1)을 슬라이드를 다운 시켰습니다
+
+         });
+  });
+
+
+ 
+ </script>
+ 
+ 
+ 
+<style type="text/css">
+  #wrap{width:150px;margin:0 auto; position:relative;   box-shadow: 1px 1px 3px  #333; }
+  .subtitle{height:40px; cursor:pointer; text-align:center; padding-top:20px; color:#FFF; background:#000;}
+  .sub1{display:none; list-style:none; color:#000; margin:0;}
+  .sub1 li { line-height:3; font-size:10pt; cursor:pointer;}
+  .sub1 li:hover{color:#903;}
+  
+ </style>
+<body>
+   <div id="wrap">
+             <div class="subtitle">Menu </div>
+                    <ul class="sub1">
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                     </ul>
+                   
+                <div class="subtitle">Menu2</div>
+                     <ul class="sub1">
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                     </ul>
+               <div class="subtitle">Menu3</div>
+                     <ul class="sub1">
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                     </ul>
+               <div class="subtitle">Menu4</div>
+                     <ul class="sub1">
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                        <li>submenu</li>
+                     </ul>
+          </div>
+         
+</body>
+ 
+</html>
