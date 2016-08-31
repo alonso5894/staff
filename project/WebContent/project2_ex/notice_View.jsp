@@ -74,11 +74,12 @@ table {font-size:11pt; font-family:굴림체;}
 
 
 <div id="stylized" class="myform">
-
+<%-- 
 <form method="post" name="frm" action="noticeServlet">
-<input type="hidden" name="command" value="notice_Insert">
+<input type="hidden" name="command" value="notice_Update">
+<input type="hidden" name="notno" value="${notice.notno}"> --%>
 
-<table border="0" cellpadding="0" cellspacing="0"> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
+<table border=""> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
 <caption align="left" >
 <h2>임시 공지사항 등록</h2>
 </caption>
@@ -87,7 +88,7 @@ table {font-size:11pt; font-family:굴림체;}
  <tr height="30">
   <td align="right" width="100">제목</td>
   <td valign="top"></td>
-  <td>  
+  <td width="600">  
   ${notice.notname}
   </td>
  </tr>
@@ -128,7 +129,7 @@ table {font-size:11pt; font-family:굴림체;}
   <td align="right">내용&nbsp;</td>
   <td valign="top"></td> 
   <td>
-   <textarea name="etc" rows="4" cols="65">${notice.notcon }</textarea>
+  ${notice.notcon }
   </td>
  </tr>
 
@@ -137,14 +138,23 @@ table {font-size:11pt; font-family:굴림체;}
 
 <tr align="center">
   <td colspan="3">
-   <input type="submit" value="등록" onClick="return joinCheck()">
+    <input type="button" value="목록" onclick="location.href='noticeServlet?command=notice_List'">  
+   <input type="submit" value="수정" onClick="location.href='noticeServlet?command=notice_Update_Form&notno=${notice.notno}'">
   
   
-   <input type="reset" value="취소">
-   <input type="button" value="목록" onclick="location.href='noticeServlet?command=notice_List'">
+   <input type="reset" value="삭제" onClick="location.href='noticeServlet?command=notice_Delete&notno=${notice.notno}'">
+  
   </td>
  </tr>
 
+  <tr height="85">
+  <td align="right">댓글&nbsp;</td>
+  <td valign="top"></td> 
+  <td>
+   <textarea name="notcon" rows="4" cols="65"></textarea>
+    <input type="button" value="입력" onclick="location.href='noticeServlet?command=notice_List'">  
+  </td>
+ </tr>
  
 
 </table>

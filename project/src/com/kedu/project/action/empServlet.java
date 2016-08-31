@@ -1,4 +1,4 @@
-package com.kedu.member.action;
+package com.kedu.project.action;
 
 import java.io.IOException;
 

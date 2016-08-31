@@ -16,6 +16,7 @@
 		   margin-left: 60px;
 		   font-size:12pt; 
 	   	   font-family:굴림체; 
+	   	   
 	}
 	 #s {font-size:10pt; color:white;}
 	 
@@ -37,6 +38,15 @@
 	/* function move(url){
 		location.href=url;
 	} */
+	function noEvent() {
+		 if (event.keyCode == 116) {
+		  event.keyCode= 2;
+		  return false;
+		 }else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)) {
+		  return false;
+		 }
+		}
+		document.onkeydown = noEvent;
 </script>
 </head>
 
@@ -50,17 +60,17 @@
 <div id="content">		 
 
 	<h2>공지사항</h2>
-	<table class="bbs" border="1">
+	<table class="bbs" border="1" style="table-layout: fixed;">
 		<colgroup>
 			<col width="50" />
 			<col width="300" />
 			<col width="100" />
-			<col width="50" />
+			<col width="60" />
 		</colgroup>
 		<thead>
 			<tr>
-				<th>순번</th>
-				<th>제목</th>
+				<th>순 번</th>
+				<th>제 목</th>
 				<th>등록일</th>
 				<th>조회수</th>
 			
@@ -69,15 +79,15 @@
 		<tbody>
 			
 			
-		<c:forEach var="notice" items="${notice_List}" >
+	   <c:forEach var="notice" items="${notice_List}" >
 			<tr>
 				<td align="center">${notice.notno}</td>
 				<td align="center"><a href="noticeServlet?command=notice_View&notno=${notice.notno}">${notice.notname}</a></td>
-				<td align="center">${notice.notdate}</td>
+				<td align="center">${notice.notdate}</td> 
 				<td align="center">${notice.nothits}</td>
-				
+		
 			</tr>
-		</c:forEach>
+		 </c:forEach> 
 		</tbody>
 		<tfoot>
 			<tr>
@@ -85,8 +95,8 @@
 			</tr>
 		</tfoot>		
 	</table>
-		<div id="but" align="right" >
-		<input type="button" value="등록" onclick="location.href=('empServlet?command=notice_WriteView_form');" />
+	<div id="but" align="right" >
+		<input type="button" value="등록" onclick="location.href=('noticeServlet?command=notice_Write_Form');" />
 		</div>
 
 </div></div>

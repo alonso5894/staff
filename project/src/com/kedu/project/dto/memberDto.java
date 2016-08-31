@@ -30,6 +30,41 @@ public class memberDto {
 	private String hiredate;
 	private String resigndate;
 	private String eregdate;
+	private String email;
+	private int sal;
+	private String etc;
+	private String epic;
+	
+	
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+
+	
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getSal() {
+		return sal;
+	}
+	public void setSal(int sal) {
+		this.sal = sal;
+	}
+	public String getEpic() {
+		return epic;
+	}
+	public void setEpic(String epic) {
+		this.epic = epic;
+	}
+
 	
 	
 	public String getHiredate() {
@@ -93,11 +128,7 @@ public class memberDto {
 	public String toString() {
 		return "memberDto [id=" + id + ", pwd=" + pwd + ", ename=" + ename + ", empno=" + empno + ", jobno=" + jobno
 				+ ", empinfo=" + empinfo + ", hiredate=" + hiredate + ", resigndate=" + resigndate + ", eregdate="
-				+ eregdate + ", getHiredate()=" + getHiredate() + ", getResigndate()=" + getResigndate()
-				+ ", getEregdate()=" + getEregdate() + ", getId()=" + getId() + ", getPwd()=" + getPwd()
-				+ ", getEname()=" + getEname() + ", getEmpno()=" + getEmpno() + ", getJobno()=" + getJobno()
-				+ ", getEmpinfo()=" + getEmpinfo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ eregdate + ", email=" + email + ", sal=" + sal + ", etc=" + etc + ", epic=" + epic + "]";
 	}
 	
 	

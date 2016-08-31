@@ -1,7 +1,9 @@
 package com.kedu.project.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,21 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.kedu.project.dao.noticeDao;
 import com.kedu.project.dto.noticeDto;
 
-public class noticeWriteAction implements Action {
-	
+public class indexListAction  implements Action {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		noticeDto bDto = new noticeDto();
+
+		String url = "/project2_ex/index.jsp";
 		
-		bDto.setNotname(request.getParameter("notname"));
-		bDto.setNotcon(request.getParameter("notcon"));
-		bDto.setNotdate(request.getParameter("notdate"));
+		
+		noticeDao bDao = noticeDao.getInstance();
+
+		List<noticeDto> indexList = bDao.indexList();
+		
+		request.setAttribute("indexList", indexList);
+	
+		RequestDispatcher disp = request.getRequestDispatcher(url);
+		disp.forward(request, response);
 		
 	
-		noticeDao bDao = 	noticeDao.getInstance();
-		bDao.insertBoard(bDto);
-		new noticeListAction().execute(request, response);
 	}
+	
+	
 }

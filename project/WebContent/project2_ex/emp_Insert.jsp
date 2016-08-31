@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,7 @@
 
 
 <script>
+
 
 $(function() {
 	$("#testDatepicker").datepicker({
@@ -228,13 +231,17 @@ function memChk() // 데이터 입력유무 확인 스크립트
 
 <div id="stylized" class="myform">
 
-<form method="post" name="frm" action="empServlet">
-<input type="hidden" name="command" value="emp_WriteView"> 
+<form method="post" name="frm" action="empServlet" enctype="multipart/form-data">
+<input type="hidden" name="command" value="emp_Write">
 <table border="0" cellpadding="0" cellspacing="0"> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
 <caption align="left" >
 <h2>사원 등록</h2>
 </caption>
- <tr height="60">
+
+
+
+ 
+ <tr height="30">
   <td align="right" width="100">사번</td>
   <td valign="top"></td>
   <td width="600">  
@@ -250,6 +257,24 @@ function memChk() // 데이터 입력유무 확인 스크립트
   <td valign="top"></td>
   <td width="600">
   <input type="text" name="ename" size="16" maxlength="28">
+  </td>
+ </tr>
+ 
+ 
+ <tr height="30">
+  <td align="right">아이디</td>
+  <td valign="top"></td>
+  <td width="600">
+  <input type="text" name="id" size="16" maxlength="28">
+  </td>
+ </tr>
+ 
+ 
+ <tr height="30">
+  <td align="right">비밀번호</td>
+  <td valign="top"></td>
+  <td width="600">
+  <input type="password" name="pwd" size="16" maxlength="28">
   </td>
  </tr>
 
@@ -314,14 +339,15 @@ function memChk() // 데이터 입력유무 확인 스크립트
   <input type="text" id="testDatepicker2" size="10" name="resigndate">
 
 
- <tr height="30">
+<!--  <tr height="30">
   <td align="right" >성별</td>
   <td valign="top"></td>
-  <td>
+  <td>"src/com/kedu/project/dto/memberDto.java"
   <input type="radio" name="memSung" value="man">남자
   <input type="radio" name="memSung" value="woman">여자
- </tr> <!-- 주민번호 입력에 따른 남녀 성별 체크 -.-a -->
-
+ </tr> 주민번호 입력에 따른 남녀 성별 체크 -.-a
+ -->
+ 
  <tr height="30">
   <td align="right">E - mail</td>
   <td valign="top"></td>
@@ -333,13 +359,14 @@ function memChk() // 데이터 입력유무 확인 스크립트
 
 
  <tr height="30">
-  <td align="right">우편번호&nbsp;</td>
+  <td align="right">우편번호</td>
   <td valign="top"></td>
   <td>
   <input type="text" name="memZipCode01" size="4" maxlength="3">-
   <input type="text" name="memZipCode02" size="4" maxlength="3">
-  <input type="button" value="검색" onClick="zipChk()">
-  </td> <!-- 우편번호 검색 ...? -->
+ 
+
+  </td> 
  </tr>
 
  <tr>
@@ -413,6 +440,17 @@ function memChk() // 데이터 입력유무 확인 스크립트
   </td> 
  </tr>
  -->
+ 
+  
+ <tr height="30">
+  <td align="right">연봉</td>
+  <td valign="top"></td>
+  <td>
+   <input type="text" name="sal" size="10">원
+  </td>
+ </tr>
+ 
+ 
  <tr height="85">
   <td align="right">비고&nbsp;</td>
   <td valign="top"></td> <!-- 자기소개 10글자 이상 어떻게?? -->
@@ -420,10 +458,30 @@ function memChk() // 데이터 입력유무 확인 스크립트
    <textarea name="etc" rows="4" cols="65"></textarea>
   </td>
  </tr>
+ 
+ <tr  height="30">
+ <td rowspan="14" width="240">
+   <td valign="top"></td>
+     <td width="600">  
+				<%-- 	<c:choose>
+						<c:when test="${empty member.epic}">
+							<img src="upload/noimage.png" width="140">
+						</c:when>
+						<c:otherwise>
+							<img src="upload/${member.epic}" width="140">
+						</c:otherwise>
+					</c:choose><br><br> --%>
+					<input type="file" name="epic"><br>
+					증명사진을 넣어주세요.
+				</td>
+</tr>
+
+
+	
 
  <tr align="center">
   <td colspan="3">
-   <input type="submit" value="등록" onClick="return joinCheck()">
+   <input type="submit" value="등록">
   
   
    <input type="reset" value="취소">
