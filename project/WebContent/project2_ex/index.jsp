@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:if test="${empty loginUser}">
 	<jsp:forward page='loginServlet'/>
 </c:if>
@@ -15,7 +16,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
   <link rel="stylesheet" type="text/css" href="project2_ex/css/style.css" />
   <script type="text/javascript" src="project2_ex/js/jquery.min.js"></script>
- 
+  <script src="project2_ex/js/jquery-1.10.2.min.js"></script>
 <title>메인화면</title>
 <style type="text/css">
 #hor-minimalist-a
@@ -63,7 +64,10 @@ body
 margin-top : 70px;
 	margin-left : 80px;
 }
-
+	
+			.hoverRowColor {
+		        cursor:pointer;
+			}
 
 
 </style>
@@ -71,6 +75,25 @@ margin-top : 70px;
 	function move(url){
 		location.href=url;
 	}
+	$(function(){
+		/* TableRow 클릭 이벤트 */
+	    $("#notice_main").on("click", "tr", function(e) { 
+	    	/* 선택된 TableRow에서 공지사항 번호값을 가져옴 */
+	        var notno = $(this).find("td:nth-child(1) input:hidden").val();
+	    	//alert(notice_no);
+	    	location.href = "noticeServlet?command=notice_View&notno=" + notno;
+	    }); 
+		
+		
+	    /* TableRow hover */
+		$("#notice_main").on("mouseover", "tr", function(e) { 
+			$(this).find("td").addClass('hoverRowColor');
+	    });
+	    
+		$("#notice_main").on("mouseout", "tr", function(e) { 
+			$(this).find("td").removeClass('hoverRowColor');
+	    });
+	});
 </script> 
 </head>
 
@@ -96,9 +119,9 @@ margin-top : 70px;
 	<table id="hor-minimalist-a" summary="Employee Pay Sheet">
 	
     	
-    <tbody>
-    	
- <c:forEach var="notice" items="${index_List}" > 
+    <tbody id="notice_main">
+   
+ <%--    <c:forEach var="notice" items="${notice_List}" > 
     	<tr>
     			<th>순번</th>
 				<td align="center">${notice.notno}</td>
@@ -108,6 +131,36 @@ margin-top : 70px;
 		
 			</tr>
 </c:forEach>
+    --%>
+   
+   
+ 	<c:choose>
+								<c:when test="${empty notice_List}">
+									<tr>
+										<td colspan="2" align="center">
+											공지사항이 없습니다.
+										</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="notice" items="${notice_List}">
+										<tr>
+											<td width="200">
+										<!-- 글번호는 hidden으로 출력 -->
+												<input type="hidden" id="notno" value="${notice.notno}">
+												${notice.notname}
+											</td>
+											<td width="100" align="right">
+										<!-- 날짜 yyyy-MM-dd형태로 파싱 -->
+												<fmt:parseDate var="parseDate" value="${notice.notdate}" pattern="yyyyMMddHHmmss" />
+												<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/>
+												
+											</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose> 
+
 		
     </tbody>
       <tfoot>

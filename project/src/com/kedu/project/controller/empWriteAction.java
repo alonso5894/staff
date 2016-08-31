@@ -17,17 +17,16 @@ public class empWriteAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			
-		 System.out.println("aaa");
+	
         request.setCharacterEncoding("UTF-8");
-   	 System.out.println("aaa");
-    	ServletContext context =  request.getSession().getServletContext();
+ 
+    	ServletContext context =  request.getServletContext();
         String path = context.getRealPath("upload");
         String encType = "UTF-8";
         int sizeLimit = 20 * 1024 * 1024;
-   	 System.out.println("aaa");
+   
         MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
-   	 System.out.println("aaa");
+   	
         String id = multi.getParameter("id");
         String pwd = multi.getParameter("pwd");
         String ename = multi.getParameter("ename");
@@ -40,6 +39,7 @@ public class empWriteAction implements Action{
         String etc = multi.getParameter("etc");
         int sal = Integer.parseInt(multi.getParameter("sal"));
         String epic = multi.getFilesystemName("epic");
+        int admin = Integer.parseInt(multi.getParameter("admin"));
      
 		/*bDto.setId(request.getParameter("id"));
 		bDto.setPwd(request.getParameter("pwd"));
@@ -54,7 +54,7 @@ public class empWriteAction implements Action{
 		bDto.setSal(Integer.parseInt(request.getParameter("sal")));
 		bDto.setEpic(request.getParameter("epic"));
 		*/
-   	 System.out.println("aaa");
+   	
 		memberDto bDto = new memberDto();
 		bDto.setPwd(id);
 		bDto.setPwd(pwd);
@@ -68,8 +68,9 @@ public class empWriteAction implements Action{
 		bDto.setEtc(etc);
 		bDto.setSal(sal);
 		bDto.setEpic(epic);
+		bDto.setAdmin(admin);
 
-		System.out.println("list ok");
+	
 		memberDao bDao = memberDao.getInstance();
 		bDao.insertMember(bDto);
 	

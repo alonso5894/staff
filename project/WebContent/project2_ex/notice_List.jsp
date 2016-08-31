@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <link rel="stylesheet" type="text/css" href="project2_ex/css/style.css" />
  <script type="text/javascript" src="project2_ex/js/jquery.min.js"></script>
+ <script src="project2_ex/js/jquery-1.10.2.min.js"></script>
 <title>공지사항</title>
 
 <style>
@@ -47,6 +51,9 @@
 		 }
 		}
 		document.onkeydown = noEvent;
+		
+	
+		
 </script>
 </head>
 
@@ -90,15 +97,14 @@
 		 </c:forEach> 
 		</tbody>
 		<tfoot>
-			<tr>
-				<td align="center" colspan="5">1</td>
-			</tr>
+			
 		</tfoot>		
 	</table>
+	<c:if test="${loginUser.admin == 1 }">
 	<div id="but" align="right" >
 		<input type="button" value="등록" onclick="location.href=('noticeServlet?command=notice_Write_Form');" />
 		</div>
-
+</c:if>
 </div></div>
 
    <jsp:include page="footer.jsp" flush="false" />

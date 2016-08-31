@@ -25,13 +25,20 @@
 	    
 	    <div id="name">
 	    ${loginUser.ename}(${loginUser.id})님 로그인
-	  	</div>
+	    <c:if test="${loginUser.admin == 1 }">
+				<td>-ADMIN</td>
+		</c:if>
+		<c:if test="${loginUser.admin == 0 }">
+				<td>-EMP</td>
+		</c:if>
+	    </div>
+	    	
 	  	
 	  	<div id="logout">
-	  	<form method="post" action="logout.jsp">
-	  	<input type="submit" value="로그아웃">
+	  
+	  	<input type="button" value="로그아웃" onclick="location.href='project2_ex/logout.jsp'">
 	  	
-	  	</form>
+
 	  	</div>
 	    
 	    </div><!--close welcome_slogan-->
@@ -55,7 +62,7 @@
                 <a class="menuLink" href="#">개인 정보 관리</a>
                 <ul class="submenu">
                     <li><a class="submenuLink" href="empServlet?command=emp_List">사원 정보 목록</a></li>
-                    <li><a class="submenuLink" href="empServlet?command=emp_WriteView_form">사원 정보 수정</a></li>
+                    <li><a class="submenuLink" href="empServlet?command=emp_Write_form">사원 정보 수정</a></li>
                  </ul>
             </li>
             <li>|</li>

@@ -30,7 +30,7 @@ public class memberDao {
 		
 		try{
 			initContext = new InitialContext();
-			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/staff");
+			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/kedu");
 			conn = ds.getConnection();
 			
 		}catch(NamingException e){
@@ -41,7 +41,7 @@ public class memberDao {
 		return conn;
 	}
 	
-	public int userCheck(String id, String pwd, String empno) {
+	public int userCheck(String id, String pwd, String empno, String admin) {
 		
 		int result = -1;
 		String sql = "select pwd from emp where id=?";
@@ -81,10 +81,12 @@ public class memberDao {
 
 
 	public memberDto getMember(String id){
+	
+		String sql="select * from emp where id=?";
+		
 		memberDto bDto = null;
 		
 		Connection conn = null;
-		String sql="select * from emp where id=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -110,6 +112,7 @@ public class memberDao {
 				bDto.setSal(rs.getInt("sal"));
 				bDto.setEtc(rs.getString("etc"));
 				bDto.setEpic(rs.getString("epic"));
+				bDto.setAdmin(rs.getInt("admin"));
 				
 				
 			}
@@ -177,8 +180,8 @@ public class memberDao {
 	
 	public void insertMember(memberDto bDto) {
 		String sql = "insert into emp("
-				+ "empinfo, id, pwd, ename, jobno, empno, hiredate, resigndate, eregdate, email, sal, etc, epic) "
-				+ "values(empinfo.nextval, ?, ?, ?, ?, emp_seq, ?, ?, sysdate, ?, ?, ?, ?)";
+				+ "empinfo, id, pwd, ename, jobno, empno, hiredate, resigndate, eregdate, email, sal, etc, epic, admin) "
+				+ "values(empinfo.nextval, ?, ?, ?, ?, emp_seq, ?, ?, sysdate, ?, ?, ?, ?, ?)";
 				
 			
 		Connection conn = null;

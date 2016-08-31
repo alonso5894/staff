@@ -16,11 +16,13 @@ public class noticeListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-
+		response.setCharacterEncoding("UTF-8");
+		
 		String url = "/project2_ex/notice_List.jsp";
 		
 		
 		noticeDao bDao = noticeDao.getInstance();
+	
 
 		List<noticeDto> notice_List = bDao.selectAllBoards();
 		
