@@ -1,97 +1,52 @@
-
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="project2_ex/css/style.css" />
+ <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="project2_ex/js/emp.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+
+
+
+<title>프로젝트 입력</title>
+ <style type="text/css">
+ #s {font-size:10pt; color:white;}
+
+table {font-size:9pt; font-family:굴림체}
  
-
-<title>Insert title here</title>
-<style type="text/css">
-
-p, h1, form, button{border:0; margin:0; padding:0;}
-.spacer{clear:both; height:1px;}
-
-.myform{
-	margin-top : -100px;
-	margin-left : 100px;
-	width:400px;
+.formmm{
+	
+	height:100px;
+	width:100px;
 	padding:14px;
+	  background: transparent;
 }
+
 
 #stylized{
 	border:solid 2px #ffffff;
-<!--	background:#ebf4fb; -->
-	
-}
-#stylized h1 {
-	font-size:16px;
-	font-weight:bold;
-	margin-bottom:8px;
-	font-family:nanumgothic,dotum;
+	opacity: 1.0;  /*투명 */
+	color: #ffffff;
+	margin-top : -100px;
+	margin-left : 10px;
+		  
+
+
+
 
 }
-#stylized p{
-	font-size:11px;
-	color:#666666;
-	margin-bottom:20px;
-	border-bottom:solid 1px #ffffff;
-	padding-bottom:10px;
-	font-family:dotum;
-}
-#stylized label{
-	display:block;
-	font-weight:bold;
-	text-align:right;
-	width:140px;
-	float:left;
-	font-family:tahoma;
-	color:#000000;
-}
-#stylized .small{
-	color:#666666;
-	display:block;
-	font-size:11px;
-	font-weight:normal;
-	text-align:right;
-	width:140px;
-	font-family:dotum;
-	letter-spacing:-1px;
-}
-#stylized input{
-float:left;
-font-size:12px;
-padding:4px 2px;
-border:solid 1px #ffffff;
-width:200px;
-margin:2px 0 20px 10px;
-}
-#stylized button{
-clear:both;
-margin-left:150px;
-width:125px;
-height:31px;
-text-align:center;
-line-height:31px;
-background-color:#000000;
-color:#FFFFFF;
-font-size:11px;
-font-weight:bold;
-font-family:tahoma;
-}
-</style>
-
+ </style>
 
 </head>
-
 
 <body>
 
@@ -103,78 +58,126 @@ font-family:tahoma;
 		 <jsp:include page="site_content.jsp" flush="false" />	
 <div id="content">		
 
+
+
 <div id="stylized" class="myform">
-<form id="form" name="form" method="post"  action="register_test.jsp">
-<h1>프로젝트 상세 </h1>
-<p></p>
+<!-- 
+<form method="post" name="frm" action="projectServlet" enctype="multipart/form_data">
+<input type="hidden" name="command" value="project_Update"> --> 
 
-<label>사번
-<span class="small">사번</span>
-</label>
-<input type="text" name="empno" id="empno" />
+<table border="0" cellpadding="0" cellspacing="0"> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
+<caption align="left" >
+<h2>프로젝트 상세화면</h2>
+</caption>
+ <tr height="30">
+  <td align="right" width="100">사번</td>
+  <td valign="top"></td>
+  <td width="600">  
+  ${emp.empno}
+  
+  </td>
+ </tr>
 
-<label>이름
-<span class="small">이름 입력</span>
-</label>
-<input type="text" name="name3" id="name3" />
+ <tr height="30">
+  <td align="right">아이디</td>
+  <td valign="top"></td>
+  <td width="600">
+ ${emp.id}
+  </td>
+ </tr>
+ 
 
-<label>부서 번호
-<span class="small">부서 번호 입력</span>
-</label>
-<input type="text" name="name1" id="name1" />
-
-<label>직급 번호
-<span class="small">직급 번호 입력</span>
-</label>
-<input type="text" name="name1" id="name1" />
-
-<label>생년월일
-<span class="small">이름 입력</span>
-</label>
-<input type="text" name="name1" id="name1" />
-
-<label>입사일
-<span class="small">이름 입력</span>
-</label>
-<input type="text" name="name2" id="name2" />
-
-<label>퇴사일
-<span class="small">이메일주소</span>
-</label>
-<input type="text" name="email" id="email" />
-
-<label>이메일
-<span class="small">이메일주소</span>
-</label>
-<input type="text" name="email" id="email" />
-
-
-<label>퇴사일
-<span class="small">이메일주소</span>
-</label>
-<input type="text" name="email" id="email" />
+ <tr height="30">
+  <td align="right">프로젝트명</td>
+  <td valign="top"></td>
+  <td width="600">
+ ${project.pname}
+  </td>
+ </tr>
+ 
+ 
+<tr height="30">
+  <td align="right">프로젝트 시작일</td> 
+  <td valign="top"></td>
+  <td>
+  ${project.pstdate}
+</tr> 
+ 
+ 
+ 
+ <tr height="30">
+  <td align="right">프로젝트 마감일</td>
+  <td valign="top"></td>
+  <td>
+  ${project.peddate}
+</td>
+</tr>
 
 
-<label>퇴사일
-<span class="small">이메일주소</span>
-</label>
-<input type="text" name="email" id="email" />
+ 
+ <tr height="30">
+  <td align="right">사용스킬</td>
+  <td valign="top"></td>
+  <td>
+  <input type="checkbox" name="memHobby" value="sports">1&nbsp;
+   <input type="checkbox" name="memHobby" value="shopping">2&nbsp;
+   <input type="checkbox" name="memHobby" value="internet">3&nbsp;
+   <input type="checkbox" name="memHobby" value="travel">4&nbsp;
+   <input type="checkbox" name="memHobby" value="reading">5&nbsp;
+   <input type="checkbox" name="memHobby" value="movie">6&nbsp;
+   <input type="checkbox" name="memHobby" value="music">7&nbsp;
+  </td>
+ </tr>
+ 
 
-<label>Password
-<span class="small">패스워드 6자 이상</span>
-</label>
-<input type="text" name="password" id="password" />
 
-<button type="submit">등록</button>
-<div class="spacer"></div>
 
+
+ 
+ <tr height="85">
+  <td align="right">상세내용&nbsp;</td>
+  <td valign="top"></td>
+  <td>
+     ${project.pcontent}
+  </td>
+ </tr>
+ 
+  <tr height="30">
+  <td align="right">수행역할</td>
+  <td valign="top"></td>
+  <td>
+
+<!-- 	
+<select name="perform">
+    <option value="0">역할선택</option>
+    <option value="1">PL</option>
+    <option value="2">PM</option>
+    <option value="3">개발자</option>
+    <option value="4">디자이너</option>
+    
+</select>
+  -->
+
+  </td> 
+ </tr>
+
+ <tr align="center">
+  <td colspan="3">
+   
+   <input type="button" value="목록" onclick="location.href='projectServlet?command=project_List'">
+   <input type="submit" value="수정" onClick="location.href='projectServlet?command=project_Update_Form&prono=${project.prono}'">
+   <input type="reset" value="삭제" onClick="location.href='projectServlet?command=project_Delete&prono=${project.prono}'">
+
+  </td>
+ </tr>
+</table>
 </form>
-
+</div>	
 </div>
+  <!--<jsp:include page="tab2.jsp" flush="false"/> -->
+</div>
+ 
 
-</div></div>
-
-	
 
  
   </div><!--close main-->
@@ -184,5 +187,3 @@ font-family:tahoma;
 
 </body>
 </html>
-
-

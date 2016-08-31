@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${empty loginUser}">
+	<jsp:forward page='loginServlet'/>
+</c:if>
+
+<!DOCTYPE html>
 <html>
 <head>
  <title>UNION 사원 관리 프로그램</title>
@@ -8,10 +13,10 @@
   <meta name="keywords" content="enter your keywords here" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="project2_ex/css/style.css" />
+  <script type="text/javascript" src="project2_ex/js/jquery.min.js"></script>
  
-<title>Insert title here</title>
+<title>메인화면</title>
 <style type="text/css">
 #hor-minimalist-a
 {
@@ -62,11 +67,11 @@ margin-top : 70px;
 
 
 </style>
-<script type="text/javascript">
+ <script type="text/javascript">
 	function move(url){
 		location.href=url;
 	}
-</script>
+</script> 
 </head>
 
 <body>
@@ -85,44 +90,31 @@ margin-top : 70px;
 	
 <div id="notice">
 	<h1>NOTICE</h1>
-	<input type="button" value="more" onclick="move('notice_List.jsp');" />
+	<input type="button" value="more" onclick="move('noticeServlet?command=notice_List');" />
 </div>	
 	
 	<table id="hor-minimalist-a" summary="Employee Pay Sheet">
 	
-    <thead>
     	
-    </thead>
     <tbody>
+    	
+ <c:forEach var="notice" items="${index_List}" > 
     	<tr>
-        	<td><a href="notice_List.jsp"  style="text-decoration:none;" >ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</a></td>
-            <td>2016.08.09</td>
-            
-        </tr>
-        <tr>
-        	<td><a href="notice_List.jsp"  style="text-decoration:none;" >일로 불러오기</a></td>
-            <td>2016.08.09</td>
-            
-        </tr>
-        <tr>
-        	<td><a href="notice_List.jsp"  style="text-decoration:none;" >공지사항 게시판에서</a></td>
-            <td>2016.08.09</td>
-            
-        </tr>
-        
-        <tr>
-        	<td><a href="notice_List.jsp"  style="text-decoration:none;" >notice_List.jsp,</a></td>
-            <td>2016.08.09</td>
-            
-        </tr>
-        
-        <tr>
-        	<td><a href="notice_List.jsp"  style="text-decoration:none;" >ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎd</a></td>
-            <td>2016.08.08</td>
-            
-        </tr>
+    			<th>순번</th>
+				<td align="center">${notice.notno}</td>
+				<td align="center"><a href="noticeServlet?command=notice_View&notno=${notice.notno}">${notice.notname}</a></td>
+				<td align="center">${notice.notdate}</td> 
+				<td align="center">${notice.nothits}</td>
+		
+			</tr>
+</c:forEach>
 		
     </tbody>
+      <tfoot>
+			<tr>
+				<td align="center" colspan="5">1</td>
+			</tr>
+		</tfoot>	
 </table>
 
 	

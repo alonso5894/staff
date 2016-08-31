@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -23,7 +24,7 @@
 	     <h1>사원 관리 프로그램</h1> 
 	    
 	    <div id="name">
-	    <%=session.getAttribute("loginUser")%>님 로그인
+	    ${loginUser.ename}(${loginUser.id})님 로그인
 	  	</div>
 	  	
 	  	<div id="logout">
@@ -38,15 +39,15 @@
 	   <div id="topMenu" >
         <ul>
             <li class="topMenuLi">
-                <a class="menuLink" href="index.jsp">메인</a>
+                <a class="menuLink" href="empServlet?command=index">메인</a>
                
             </li>
             <li>|</li>
             <li class="topMenuLi">
                 <a class="menuLink" href="#">개인 프로젝트 이력 관리</a>
                  <ul class="submenu">
-                    <li><a class="submenuLink longLink" href="project_List.jsp">프로젝트 이력 목록</a></li>
-                    <li><a class="submenuLink longLink" href="project_View.jsp">프로젝트 이력 등록</a></li>
+                    <li><a class="submenuLink longLink" href="projectServlet?command=project_List">프로젝트 이력 목록</a></li>
+                    <li><a class="submenuLink longLink" href="projectServlet?command=project_Write_Form">프로젝트 이력 등록</a></li>
                   </ul>
             </li> 
             <li>|</li>

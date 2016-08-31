@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta name="description" content="free website template" />
-  <meta name="keywords" content="enter your keywords here" />
+<!--  <meta name="description" content="free website template" />
+  <meta name="keywords" content="enter your keywords here" /> -->
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
   <link rel="stylesheet" type="text/css" href="project2_ex/css/style.css" />
   <script type="text/javascript" src="project2_ex/js/jquery.min.js"></script>
+  <script type="text/javascript" src="project2_ex/js/emp.js"></script>
   
 <title>사원 정보 목록</title>
 
@@ -88,7 +89,7 @@
 		<c:forEach items="${emp_List}" var="emp"> 			
 			<tr>
 				<td align="center">${emp.empinfo }</td>
-				<td align="center"><a href="empServlet?command=emp_View&empno=${emp.empno}">${emp.ename}</a></td>
+				<td align="center"><a href="empServlet?command=emp_View&id=${emp.id}">${emp.ename}</a></td>
 				<td align="center">${emp.jobno }</td>
 				<td align="center">${emp.empno }</td>
 				
@@ -103,7 +104,7 @@
 				
 	</table>
 		<div id="but" align="right" > 
-		<input type="button" value="등록" onclick="location.href=('empServlet?command=emp_WriteView_form');" />
+		<input type="button" value="등록" onclick="location.href=('empServlet?command=emp_Write_form');" />
 		</div>
 		
 <div id="stylized" class="myform">		
@@ -113,9 +114,9 @@
  <tr>
   <td align="right">ID</td>
   <td>  
-   <input type="text" name="memId" size="12">
+   <input type="text" name="id" size="12">
   </td>
-
+1
 
   <td align="right">사원명</td>
   <td>
@@ -124,8 +125,8 @@
 
   <td align="right">등록일</td>
   <td>
-  <input type="text" name="birth" size="5" maxlength="5"> ~
-  <input type="text" name="memBirth02" size="5" maxlength="5">
+  <input type="text" name="hiredate" size="5" maxlength="5"> ~
+  <input type="text" name="resigndate" size="5" maxlength="5">
   <input type="button" value="검색" onclick="">
 </td>
 

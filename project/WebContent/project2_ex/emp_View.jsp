@@ -82,7 +82,7 @@ table {font-size:11pt; font-family:굴림체;}
 <caption align="left" >
 <h2>사원 정보</h2>
 </caption>
- <tr height="60">
+ <tr height="30">
   <td align="right" width="100">사번</td>
   <td valign="top"></td>
   <td>  
@@ -99,18 +99,33 @@ table {font-size:11pt; font-family:굴림체;}
   ${emp.ename}
   </td>
  </tr>
+ 
+ 
+
+ <tr height="30">
+  <td align="right">이름</td>
+  <td valign="top"></td>
+  <td width="600">
+  ${emp.id}
+  </td>
+ </tr>
+ 
+ 
+
+ <tr height="30">
+  <td align="right">비밀번호</td>
+  <td valign="top"></td>
+  <td width="600">
+  ${emp.pwd}
+  </td>
+ </tr>
 
 
  <tr height="30">
   <td align="right">부서</td>
   <td valign="top"></td>
   <td>
-	 <input type="text" name="deptno" size="16" value="  ${emp.ename}">
- <!--   <select name="memJob">
-   <option value="Not">선택하세요</option>
-   <option value="j1">1</option>
-   <option value="j2">2</option>
-   <option value="j3">3</option>  
+	 
 
    </select> -->
  </tr>
@@ -119,15 +134,8 @@ table {font-size:11pt; font-family:굴림체;}
   <td align="right">직급</td>
   <td valign="top">&nbsp;</td>
   <td>
-   <input type="text" name="jobno" size="16" >
- <!--  
-   <select name="memJob">
-   <option value="Not">선택하세요</option>
-   <option value="j1">1</option>
-   <option value="j2">2</option>
-   <option value="j3">3</option>
+   ${emp.jobno}
 
-   </select> --> 
  </tr>
 
 
@@ -148,9 +156,9 @@ table {font-size:11pt; font-family:굴림체;}
   <td align="right">입사일</td>
   <td valign="top"></td>
   <td>
-  <input type="text"  id="testDatepicker1" size="10" name="hiredate" >
+  ${emp.hiredate}
 
- </tr> 
+ </td> 
  
  
  
@@ -158,7 +166,8 @@ table {font-size:11pt; font-family:굴림체;}
   <td align="right">퇴사일</td>
   <td valign="top"></td>
   <td>
-  <input type="text" id="testDatepicker2" size="10" name="resigndate">
+  ${emp.resigndate}
+  </td>
 
 
  <tr height="30">
@@ -173,7 +182,7 @@ table {font-size:11pt; font-family:굴림체;}
   <td align="right">E - mail</td>
   <td valign="top"></td>
   <td>
-   <input type="text" name="email" size="28">
+   ${emp.email}
   </td>
  </tr>
 
@@ -266,7 +275,7 @@ table {font-size:11pt; font-family:굴림체;}
   <td align="right">비고&nbsp;</td>
   <td valign="top"></td> <!-- 자기소개 10글자 이상 어떻게?? -->
   <td>
-   <textarea name="etc" rows="4" cols="65"></textarea>
+   ${emp.etc}
   </td>
  </tr>
 

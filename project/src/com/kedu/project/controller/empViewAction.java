@@ -18,11 +18,11 @@ public class empViewAction implements Action {
 		  
 		  String url = "/project2_ex/emp_View.jsp";
 		
-		  String empno = request.getParameter("empno");
-
+		/*  String empno = request.getParameter("empno");*/
+		  String id = request.getParameter("id");
 		  memberDao bDao = memberDao.getInstance();
-		
-		  memberDto bDto = bDao.getMember(empno);
+		  memberDto bDto = bDao.getMember(id);
+		 /* memberDto bDto = bDao.getMember(empno);*/
 		
 		  request.setAttribute("emp", bDto);
 

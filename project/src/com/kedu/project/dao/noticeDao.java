@@ -61,6 +61,31 @@ public class noticeDao {
 		return list;
 	}
 	
+	public void insertBoard(noticeDto bDto) {
+		String sql = "insert into notice("
+				+ "notno, notname, notcon, notdate) "
+				+ "values(notno.nextval, ?, ?, sysdate)";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bDto.getNotname());
+			pstmt.setString(2, bDto.getNotcon());
+			
+			
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(pstmt, conn);
+		}
+	}
+	
+	
 	public void updateReadCount(String notno) {
 		String sql="update notice set nothits = nothits+1 where notno=?";
 		
@@ -116,7 +141,86 @@ public class noticeDao {
 		return bDto;
 	  }
 
+	public void updateBoard(noticeDto bDto) {
+		String sql = "update notice set notname=?, notcon=? where notno=?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn=DBManager.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bDto.getNotname());
+			pstmt.setString(2, bDto.getNotcon());
+		/*	pstmt.setString(3, bDto.getNotdate());*/
+			pstmt.setInt(3, bDto.getNotno());
+			
+			
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(pstmt, conn);
+		}
+	}
 
+	
 
+	public void deleteBoard(String notno) {
+		String sql = "delete notice where notno=?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, notno);
+			
+			pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	  }
 
+	public ArrayList<noticeDto> indexList() {
+	
+		String sql =  "select * from (select * from notice order by notdate desc) where rownum <= 5";
+		ArrayList<noticeDto> index_Iist = new ArrayList<noticeDto>();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			stmt = conn.prepareStatement(sql);
+			
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+		
+			noticeDto bDto = new noticeDto();
+			
+			bDto.setNotname(rs.getString("notname"));
+			bDto.setNotno(rs.getInt("notno"));
+			bDto.setNotcon(rs.getString("notcon"));
+			bDto.setNotdate(rs.getString("notdate"));
+			bDto.setNothits(rs.getInt("nothits"));
+			
+		
+			
+			index_Iist.add(bDto);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(rs, stmt, conn);
+		}
+		return index_Iist;
+	}
+  
 }

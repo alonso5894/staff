@@ -41,19 +41,57 @@ public class memberDao {
 		return conn;
 	}
 	
+	public int userCheck(String id, String pwd, String empno) {
+		
+		int result = -1;
+		String sql = "select pwd from emp where id=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 	
-	public memberDto getMember(String empno){
+		try {
+			conn = getConnection();
+		    pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+				if(rs.getString("pwd")!=null & rs.getString("pwd").equals(pwd)) {
+				result = 1;
+			} else {
+				result = 0;
+			}
+		} else  {
+			result = -1;
+		}
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+
+
+	public memberDto getMember(String id){
 		memberDto bDto = null;
 		
 		Connection conn = null;
-		String sql="select * from emp where empno=?";
+		String sql="select * from emp where id=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try{
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, empno);
+			pstmt.setString(1, id);
 			
 			rs=pstmt.executeQuery();
 			
@@ -68,6 +106,10 @@ public class memberDao {
 				bDto.setHiredate(rs.getString("hiredate"));
 				bDto.setResigndate(rs.getString("resigndate"));
 				bDto.setEregdate(rs.getString("eregdate"));
+				bDto.setEmail(rs.getString("email"));
+				bDto.setSal(rs.getInt("sal"));
+				bDto.setEtc(rs.getString("etc"));
+				bDto.setEpic(rs.getString("epic"));
 				
 				
 			}
@@ -109,6 +151,13 @@ public class memberDao {
 				bDto.setEname(rs.getString("ename"));
 				bDto.setJobno(rs.getString("jobno"));
 				bDto.setEmpno(rs.getString("empno"));
+				bDto.setHiredate(rs.getString("hiredate"));
+				bDto.setResigndate(rs.getString("resigndate"));
+				bDto.setEregdate(rs.getString("eregdate"));
+				bDto.setEmail(rs.getString("email"));
+				bDto.setSal(rs.getInt("sal"));
+				bDto.setEtc(rs.getString("etc"));
+				bDto.setEpic(rs.getString("epic"));
 				
 				List.add(bDto);
 			}
@@ -120,10 +169,16 @@ public class memberDao {
 		return List;
 	}
 
+	
+	//검색
+	
+	
+	
+	
 	public void insertMember(memberDto bDto) {
 		String sql = "insert into emp("
-				+ "empinfo, id, pwd, ename, jobno, empno, hiredate, resigndate, eregdate) "
-				+ "values(empinfo.nextval, ?, ?, ?, ?, emp_seq, ?, ?, sysdate)";
+				+ "empinfo, id, pwd, ename, jobno, empno, hiredate, resigndate, eregdate, email, sal, etc, epic) "
+				+ "values(empinfo.nextval, ?, ?, ?, ?, emp_seq, ?, ?, sysdate, ?, ?, ?, ?)";
 				
 			
 		Connection conn = null;
@@ -139,12 +194,17 @@ public class memberDao {
 			pstmt.setString(3, bDto.getEname());
 			pstmt.setString(4, bDto.getJobno());			
 			pstmt.setString(5, bDto.getEmpno());
-			pstmt.setString(5, bDto.getHiredate());
-			pstmt.setString(6, bDto.getResigndate());
+			pstmt.setString(6, bDto.getHiredate());
+			pstmt.setString(7, bDto.getResigndate());
+			pstmt.setString(8, bDto.getEmail());
+			pstmt.setInt(9, bDto.getSal());
+			pstmt.setString(10, bDto.getEtc());
+			pstmt.setString(11, bDto.getEpic());
 			
 			
-
-			System.out.println(pstmt.executeUpdate());			
+			
+			pstmt.executeUpdate();
+					
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
