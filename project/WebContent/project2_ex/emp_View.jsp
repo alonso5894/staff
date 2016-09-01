@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +104,7 @@ table {font-size:11pt; font-family:굴림체;}
  
 
  <tr height="30">
-  <td align="right">이름</td>
+  <td align="right">아이디</td>
   <td valign="top"></td>
   <td width="600">
   ${emp.id}
@@ -119,6 +120,22 @@ table {font-size:11pt; font-family:굴림체;}
   ${emp.pwd}
   </td>
  </tr>
+ 
+  <tr height="30">
+  <td align="right">권한</td>
+  <td valign="top"></td>
+ 
+  <c:choose>
+					<c:when test="${emp.admin == 1 }">
+						<td width="600">관리자</td>
+					</c:when>
+					<c:otherwise>
+						<td width="600">일반 회원</td>
+					</c:otherwise>
+				</c:choose>
+  
+ </tr>
+ 
 
 
  <tr height="30">
@@ -127,7 +144,6 @@ table {font-size:11pt; font-family:굴림체;}
   <td>
 	 
 
-   </select> -->
  </tr>
  
   <tr height="30">

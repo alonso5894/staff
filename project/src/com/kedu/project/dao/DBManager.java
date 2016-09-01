@@ -18,7 +18,7 @@ public class DBManager {
 		try {
 			Context initContext = new InitialContext();
 			DataSource ds = (DataSource) initContext
-					.lookup("java:/comp/env/jdbc/staff");
+					.lookup("java:/comp/env/jdbc/kedu");
 			conn = ds.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();

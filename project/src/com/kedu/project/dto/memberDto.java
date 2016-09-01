@@ -34,8 +34,15 @@ public class memberDto {
 	private int sal;
 	private String etc;
 	private String epic;
+	private int admin;
 	
 	
+	public int getAdmin() {
+		return admin;
+	}
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
 	public String getEtc() {
 		return etc;
 	}
@@ -128,7 +135,8 @@ public class memberDto {
 	public String toString() {
 		return "memberDto [id=" + id + ", pwd=" + pwd + ", ename=" + ename + ", empno=" + empno + ", jobno=" + jobno
 				+ ", empinfo=" + empinfo + ", hiredate=" + hiredate + ", resigndate=" + resigndate + ", eregdate="
-				+ eregdate + ", email=" + email + ", sal=" + sal + ", etc=" + etc + ", epic=" + epic + "]";
+				+ eregdate + ", email=" + email + ", sal=" + sal + ", etc=" + etc + ", epic=" + epic + ", admin="
+				+ admin + "]";
 	}
 	
 	

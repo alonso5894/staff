@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html>
@@ -232,6 +231,7 @@ function memChk() // 데이터 입력유무 확인 스크립트
 <div id="stylized" class="myform">
 
 <form method="post" name="frm" action="empServlet" enctype="multipart/form-data">
+<%-- <input type="hidden" name="id" value="${emp.id}"> --%>
 <input type="hidden" name="command" value="emp_Write">
 <table border="0" cellpadding="0" cellspacing="0"> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
 <caption align="left" >
@@ -278,34 +278,80 @@ function memChk() // 데이터 입력유무 확인 스크립트
   </td>
  </tr>
 
+<tr height="30">
+  <td align="right">권한</td>
+  <td valign="top"></td>
+  <td colspan="2">
+ 			<c:choose>
+				<c:when test="${loginUser.admin == 1 }">
+						<select name="admin">
+							<option value="0">일반</option>
+							<option value="1">관리자</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+				<input type="hidden" name="admin" value="${loginUser.admin }">
+							일반
+						</c:otherwise>
+					</c:choose>
+  </td>
+ </tr>
 
  <tr height="30">
   <td align="right">부서</td>
   <td valign="top"></td>
   <td>
-	 <input type="text" name="deptno" size="16">
- <!--   <select name="memJob">
-   <option value="Not">선택하세요</option>
-   <option value="j1">1</option>
-   <option value="j2">2</option>
-   <option value="j3">3</option>  
-
-   </select> -->
+	<c:choose>
+						<c:when test="${loginUser.admin == 1 }">
+							<select name="dept">
+								<option value="0">미배정</option>
+								<option value="1">인사부</option>
+								<option value="2">개발부</option>
+								<option value="3">디자인부</option>
+								<option value="4">기획부</option>
+								<option value="5">영업부</option>
+								<option value="6">경영지원부</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="dept" items="${deptList }">
+								<c:if test="${member.empdept == dept.deptno }">
+									${dept.deptname }
+								</c:if>
+							<input type="hidden" name="empdept" value="${dept.deptno }">
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+ 
  </tr>
  
   <tr height="30">
   <td align="right">직급</td>
   <td valign="top">&nbsp;</td>
-  <td>
-   <input type="text" name="jobno" size="16" >
- <!--  
-   <select name="memJob">
-   <option value="Not">선택하세요</option>
-   <option value="j1">1</option>
-   <option value="j2">2</option>
-   <option value="j3">3</option>
-
-   </select> --> 
+  <td colspan="2">
+  <c:choose>
+			<c:when test="${loginUser.admin == 1  }">
+					<select name="jobno">
+						<option value="1">인턴</option>
+						<option value="2">사원</option>
+							<option value="3">대리</option>
+							<option value="4">과장</option>
+							<option value="5">차장</option>
+							<option value="6">부장</option>
+							<option value="7">부사장</option>
+							<option value="8">사장</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+						<c:forEach var="job" items="${jobList }">
+							<c:if test="${member.empjob == job.jobno }">
+								${job.jobname }
+							</c:if>
+							<input type="hidden" name="jobno" value="${job.jobno }">
+						</c:forEach>
+						</c:otherwise>
+					</c:choose>
+ 
  </tr>
 
 
@@ -459,23 +505,23 @@ function memChk() // 데이터 입력유무 확인 스크립트
   </td>
  </tr>
  
- <tr  height="30">
+<%--  <tr  height="30">
  <td rowspan="14" width="240">
    <td valign="top"></td>
      <td width="600">  
-				<%-- 	<c:choose>
+					<c:choose>
 						<c:when test="${empty member.epic}">
 							<img src="upload/noimage.png" width="140">
 						</c:when>
 						<c:otherwise>
 							<img src="upload/${member.epic}" width="140">
 						</c:otherwise>
-					</c:choose><br><br> --%>
+					</c:choose><br><br>
 					<input type="file" name="epic"><br>
 					증명사진을 넣어주세요.
 				</td>
 </tr>
-
+ --%>
 
 	
 

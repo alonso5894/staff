@@ -32,9 +32,10 @@ public class loginServlet extends HttpServlet {
 		String empno = request.getParameter("empno");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		String admin = request.getParameter("admin");
 		
 		memberDao bDao = memberDao.getInstance();
-		int result = bDao.userCheck(id, pwd, empno);
+		int result = bDao.userCheck(id, pwd, empno, admin);
 		
 		if(result == 1) {
 			memberDto bDto = bDao.getMember(id);

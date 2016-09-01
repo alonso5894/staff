@@ -16,19 +16,22 @@ public class loginAction implements Action {
 	  public void execute(HttpServletRequest request, HttpServletResponse response)
 	      throws ServletException, IOException {
 		  
-		  String empno = request.getParameter("empno");
+		  String url = "project2_ex/login.jsp";
+		  
+		 	String empno = request.getParameter("empno");
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("pwd");
+			String admin = request.getParameter("admin");
 			
 			memberDao bDao = memberDao.getInstance();
-			int result = bDao.userCheck(id, pwd, empno);
+			int result = bDao.userCheck(id, pwd, empno, admin);
 			
 			if(result == 1) {
 				memberDto bDto = bDao.getMember(id);
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", bDto);
 				
-				String url = "project2_ex/index.jsp";
+				url = "project2_ex/index.jsp";
 			
 			}else if(result == 0){
 			request.setAttribute("message", "패스워드를 확인하여주세요.");

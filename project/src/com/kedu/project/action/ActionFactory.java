@@ -6,9 +6,10 @@ import com.kedu.project.controller.empViewAction;
 import com.kedu.project.controller.empWriteAction;
 import com.kedu.project.controller.empWriteFormAction;
 import com.kedu.project.controller.indexAction;
-import com.kedu.project.controller.indexListAction;
+
 import com.kedu.project.controller.loginAction;
 import com.kedu.project.controller.loginFormAction;
+import com.kedu.project.controller.logoutAction;
 import com.kedu.project.controller.noticeDeleteAction;
 import com.kedu.project.controller.noticeListAction;
 import com.kedu.project.controller.noticeUpdateAction;
@@ -45,6 +46,9 @@ public class ActionFactory {
     else if (command.equals("login_Form")) {
         action = new loginFormAction();
       } 
+    else if (command.equals("logout")) {
+    	action = new logoutAction();
+    }
     
     else if (command.equals("emp_List")) {
       action = new empListAction();
@@ -97,11 +101,11 @@ public class ActionFactory {
     else if (command.equals("notice_Delete")) {
     	action = new noticeDeleteAction();
     }
-  
+/*  
    else if (command.equals("index_List")) {
     	action = new indexListAction();
     }
-    
+    */
     
     
     

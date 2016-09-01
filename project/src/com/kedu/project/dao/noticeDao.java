@@ -184,8 +184,8 @@ public class noticeDao {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-	  }
-
+	  } }
+/*
 	public ArrayList<noticeDto> indexList() {
 	
 		String sql =  "select * from (select * from notice order by notdate desc) where rownum <= 5";
@@ -223,4 +223,4 @@ public class noticeDao {
 		return index_Iist;
 	}
   
-}
+}*/
