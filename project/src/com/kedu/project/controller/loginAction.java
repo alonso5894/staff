@@ -16,8 +16,7 @@ public class loginAction implements Action {
 	  public void execute(HttpServletRequest request, HttpServletResponse response)
 	      throws ServletException, IOException {
 		  
-		  String url = "project2_ex/login.jsp";
-		  
+		
 		 	String empno = request.getParameter("empno");
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("pwd");
@@ -31,7 +30,7 @@ public class loginAction implements Action {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", bDto);
 				
-				url = "project2_ex/index.jsp";
+				
 			
 			}else if(result == 0){
 			request.setAttribute("message", "패스워드를 확인하여주세요.");

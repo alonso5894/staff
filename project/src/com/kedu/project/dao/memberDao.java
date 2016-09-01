@@ -30,7 +30,7 @@ public class memberDao {
 		
 		try{
 			initContext = new InitialContext();
-			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/kedu");
+			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/staff");
 			conn = ds.getConnection();
 			
 		}catch(NamingException e){
@@ -129,7 +129,39 @@ public class memberDao {
 		}
 		return bDto;
 	}
-	
+	//사번으로 이름
+	public String getEmpNameByNo(String empno) {
+		String ename = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("select ename		");
+		sql.append("  from emp		");
+		sql.append("where empno = ?	");
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, empno);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				ename = rs.getString("ename");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DBManager.close(rs, pstmt, conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return ename;
+	}// getStaffNameByNo
 		
 		
 			//order by empinfo desc
@@ -219,4 +251,7 @@ public class memberDao {
 			}
 		}
 	}
+	
+
+
 }

@@ -21,6 +21,7 @@
 		   font-size:12pt; 
 	   	   font-family:굴림체; 
 	   	   
+	   	   
 	}
 	 #s {font-size:10pt; color:white;}
 	 

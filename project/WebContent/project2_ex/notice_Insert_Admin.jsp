@@ -81,8 +81,8 @@ table {font-size:9pt; font-family:굴림체}
  <tr height="30">
   <td align="right">작성자</td>
   <td valign="top"></td>
-  <td width="600">
-   
+  <td width="600">  <!-- 작성자 임시 -->
+   ${loginUser.ename}
 
   </td>
  </tr>

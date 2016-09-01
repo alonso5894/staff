@@ -1,12 +1,12 @@
 package com.kedu.project.action;
 
 import com.kedu.project.controller.Action;
+import com.kedu.project.controller.ReplyInsertAction;
 import com.kedu.project.controller.empListAction;
 import com.kedu.project.controller.empViewAction;
 import com.kedu.project.controller.empWriteAction;
 import com.kedu.project.controller.empWriteFormAction;
 import com.kedu.project.controller.indexAction;
-
 import com.kedu.project.controller.loginAction;
 import com.kedu.project.controller.loginFormAction;
 import com.kedu.project.controller.logoutAction;
@@ -101,6 +101,10 @@ public class ActionFactory {
     else if (command.equals("notice_Delete")) {
     	action = new noticeDeleteAction();
     }
+    else if (command.equals("reply_Insert")) {
+    	action = new ReplyInsertAction();
+    	
+    }
 /*  
    else if (command.equals("index_List")) {
     	action = new indexListAction();
@@ -131,6 +135,7 @@ public class ActionFactory {
    else if (command.equals("project_Update_Form")) {
 	   action = new projectUpdateFormAction();
    }
+   
     return action;
   }
 }

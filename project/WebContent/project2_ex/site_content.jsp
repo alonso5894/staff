@@ -4,10 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <meta name="description" content="free website template" />
-  <meta name="keywords" content="enter your keywords here" />
- <meta http-equiv="X-UA-Compatible" content="IE=9" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<!--   <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
 <!--   <script type="text/javascript" src="js/jquery.min.js"></script> -->
 
 

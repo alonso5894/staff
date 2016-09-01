@@ -14,12 +14,19 @@ public class projectDto {
 	private String peddate;
 	private String pregdate;
 	private String pcontent;
+	private String empno;
 	
+	public String getEmpno() {
+		return empno;
+	}
+	public void setEmpno(String empno) {
+		this.empno = empno;
+	}
 	//스킬 테이블
 	private int sknum;
 	private String skname;
 	
-	//역할 테이블
+	//역할 테이블 perform
 	private int roleno;
 	private String role;
 	

@@ -73,7 +73,7 @@ table {font-size:9pt; font-family:굴림체}
   <td align="right" width="100">사번</td>
   <td valign="top"></td>
   <td width="600">  
-  ${emp.empno}
+    ${loginUser.empno}
   
   </td>
  </tr>
@@ -82,7 +82,7 @@ table {font-size:9pt; font-family:굴림체}
   <td align="right">아이디</td>
   <td valign="top"></td>
   <td width="600">
- ${emp.id}
+   ${loginUser.id}
   </td>
  </tr>
  

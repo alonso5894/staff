@@ -422,8 +422,9 @@ ul img {
 #name {
 	color : #FFF;
 	position: relative;
-	text-align :right;
-	margin-right: -20px;
+ 	text-align :right; 
+ 	margin-right: -70px;
+	
 }
 
 #dateTime {

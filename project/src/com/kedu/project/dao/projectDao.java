@@ -50,6 +50,40 @@ public class projectDao {
 				bDto.setPeddate(rs.getString("peddate"));
 				bDto.setPregdate(rs.getString("pregdate"));
 				bDto.setPcontent(rs.getString("pcontent"));
+				bDto.setRoleno(rs.getInt("roleno"));
+				
+				
+				list.add(bDto);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				DBManager.close(rs, stmt, conn);
+			}
+			return list;
+		}
+		
+		public List<projectDto> selectPerform() {
+			String sql = "select * from perform";
+			
+			List<projectDto> list = new ArrayList<projectDto>();
+			
+			Connection conn = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+			
+			try {
+				conn = DBManager.getConnection();
+				stmt = conn.createStatement();
+				
+				rs = stmt.executeQuery(sql);
+				
+				while(rs.next()) {
+			
+				projectDto bDto = new projectDto();
+				
+				bDto.setRoleno(rs.getInt("roleno"));
+				bDto.setRole(rs.getString("role"));
 				
 				
 				list.add(bDto);
@@ -87,6 +121,7 @@ public class projectDao {
 					bDto.setPeddate(rs.getString("peddate"));
 					bDto.setPregdate(rs.getString("pregdate"));
 					bDto.setPcontent(rs.getString("pcontent"));
+					bDto.setRoleno(rs.getInt("roleno"));
 					
 					
 				}
@@ -100,8 +135,8 @@ public class projectDao {
 		
 		public void insertBoard(projectDto bDto) {
 			String sql = "insert into project("
-					+ "prono, pname, pstdate, peddate, pregdate, pcontent) "
-					+ "values(prono.nextval, ?, ?, ?, SYSDATE, ?)";
+					+ "prono, pname, pstdate, peddate, pregdate, pcontent, roleno) "
+					+ "values(prono.nextval, ?, ?, ?, SYSDATE, ?, ?)";
 			
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -114,6 +149,7 @@ public class projectDao {
 				pstmt.setString(2, bDto.getPstdate());
 				pstmt.setString(3, bDto.getPeddate());
 				pstmt.setString(4, bDto.getPcontent());
+				pstmt.setInt(5, bDto.getRoleno());
 				
 				
 				pstmt.executeUpdate();

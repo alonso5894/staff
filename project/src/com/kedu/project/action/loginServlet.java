@@ -42,7 +42,7 @@ public class loginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", bDto);
 			
-			url = "project2_ex/index.jsp";
+			url = "empServlet?command=index";
 		
 		}else if(result == 0){
 		request.setAttribute("message", "패스워드를 확인하여주세요.");

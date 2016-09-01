@@ -38,6 +38,31 @@ $(function() {
 	});
 });
 
+
+$(function() {
+	$.ajax({
+			url : "<c:url value="projectServlet"/>",
+			success : function(data) {
+				
+				loadCombo($("#combobox").data.locations);
+				$("#combobox").val("");
+			}
+	});
+	$("#combobox").change(function() {
+		alert("Selected : " +$("#combobox option:selected").val());
+		});
+	});
+	function loadCombo(target, data) {
+		var dataArr = [];
+		var inx =0;
+		target.empty();
+		
+		$(data).each(function() {
+			dataArr[inx++] = "<option value=" + this.roleno + ">" + this.role + "</option> ";
+			});
+		target.append(dataArr);
+}
+
 </script>
 
 
@@ -88,6 +113,7 @@ table {font-size:9pt; font-family:굴림체}
 
 <form method="post" name="frm" action="projectServlet">
 <input type="hidden" name="command" value="project_Write"> 
+<input type="hidden" value="${loginUser.id }" name="proid">
 <table border="0" cellpadding="0" cellspacing="0"> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
 <caption align="left" >
 <h2>프로젝트 등록</h2>
@@ -96,7 +122,8 @@ table {font-size:9pt; font-family:굴림체}
   <td align="right" width="100">사번</td>
   <td valign="top"></td>
   <td width="600">  
-   <input type="text" name="empno" size="16">
+  ${loginUser.empno}
+  
   
   </td>
  </tr>
@@ -105,7 +132,7 @@ table {font-size:9pt; font-family:굴림체}
   <td align="right">아이디</td>
   <td valign="top"></td>
   <td width="600">
-  <input type="text" name="id" size="16" maxlength="28">
+  ${loginUser.id}
   </td>
  </tr>
  
@@ -170,15 +197,18 @@ table {font-size:9pt; font-family:굴림체}
   <td>
 
 <!-- 	
-<select name="perform">
+<select id="selectbox">
     <option value="0">역할선택</option>
     <option value="1">PL</option>
     <option value="2">PM</option>
     <option value="3">개발자</option>
     <option value="4">디자이너</option>
     
+</select> -->
+<select id="combobox">
+<option>===locations===</option>
 </select>
-  -->
+
 
   </td> 
  </tr>

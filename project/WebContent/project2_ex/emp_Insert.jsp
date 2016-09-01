@@ -231,7 +231,6 @@ function memChk() // 데이터 입력유무 확인 스크립트
 <div id="stylized" class="myform">
 
 <form method="post" name="frm" action="empServlet" enctype="multipart/form-data">
-<%-- <input type="hidden" name="id" value="${emp.id}"> --%>
 <input type="hidden" name="command" value="emp_Write">
 <table border="0" cellpadding="0" cellspacing="0"> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
 <caption align="left" >
@@ -304,13 +303,13 @@ function memChk() // 데이터 입력유무 확인 스크립트
 	<c:choose>
 						<c:when test="${loginUser.admin == 1 }">
 							<select name="dept">
-								<option value="0">미배정</option>
-								<option value="1">인사부</option>
-								<option value="2">개발부</option>
-								<option value="3">디자인부</option>
-								<option value="4">기획부</option>
-								<option value="5">영업부</option>
-								<option value="6">경영지원부</option>
+								<option value="1">미배정</option>
+								<option value="2">인사</option>
+								<option value="3">개발</option>
+								<option value="4">디자인</option>
+								<option value="5">기획</option>
+								<option value="6">영업</option>
+								<option value="7">경영지원</option>
 							</select>
 						</c:when>
 						<c:otherwise>
@@ -424,33 +423,6 @@ function memChk() // 데이터 입력유무 확인 스크립트
   </td>
  </tr>
 
- <tr height="30">
-  <td align="right">전화번호</td>
-  <td valign="top"></td>
-  <td>
-   <select name="memTel01">
-   <option value="02">02</option>
-   <option value="033">033</option>
-   <option value="032">032</option>
-   <option value="043">043</option>
-   <option value="042">042</option>
-   <option value="041">041</option>
-   <option value="062">062</option>
-   <option value="063">063</option>
-   <option value="053">053</option>
-   <option value="061">061</option>
-   <option value="052">052</option>
-   <option value="054">054</option>
-   <option value="051">051</option>
-   <option value="055">055</option>
-   <option value="031">031</option>
-   <option value="064">064</option>
-   </select>-
-   <input type="text" name="memTel02" size="5" maxlength="4">
-   -
-   <input type="text" name="memTel03" size="5" maxlength="4"> 
-  </td> <!-- 숫자만 입력가능?? -.-a -->
- </tr>
 
  <tr height="30">
   <td align="right">핸 드 폰&nbsp;</td>
@@ -505,23 +477,23 @@ function memChk() // 데이터 입력유무 확인 스크립트
   </td>
  </tr>
  
-<%--  <tr  height="30">
+  <tr  height="30">
  <td rowspan="14" width="240">
    <td valign="top"></td>
      <td width="600">  
 					<c:choose>
-						<c:when test="${empty member.epic}">
+						<c:when test="${empty emp.epic}">
 							<img src="upload/noimage.png" width="140">
 						</c:when>
 						<c:otherwise>
-							<img src="upload/${member.epic}" width="140">
+							<img src="upload/${emp.epic}" width="140">
 						</c:otherwise>
 					</c:choose><br><br>
 					<input type="file" name="epic"><br>
 					증명사진을 넣어주세요.
 				</td>
 </tr>
- --%>
+ 
 
 	
 

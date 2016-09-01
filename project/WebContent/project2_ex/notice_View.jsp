@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <link rel="stylesheet" type="text/css" href="project2_ex/css/style.css" />
- <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="project2_ex/js/emp.js"></script>
-<link rel="stylesheet" href="/css/jquery-ui.min.css">
+ <script type="text/javascript" src="project2_ex/js/jquery.min.js"></script>
+<script type="text/javascript" src="project2_ex/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="project2_ex/js/reply.js"></script>
+<link rel="stylesheet" href="project2_ex/css/jquery-ui.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
@@ -81,7 +82,7 @@ table {font-size:11pt; font-family:굴림체;}
 
 <table border=""> <!-- cellpadding과 cellspacing 값을 0으로 초기화 해주지 않으면 테이블내부의 행/열 간 간격이 벌어진다. -->
 <caption align="left" >
-<h2>임시 공지사항 등록</h2>
+<h2>공지사항 상세화면</h2>
 </caption>
  
  
@@ -98,8 +99,8 @@ table {font-size:11pt; font-family:굴림체;}
  <tr height="30">
   <td align="right">작성자</td>
   <td valign="top"></td>
-  <td width="600">
-  ${emp.ename}
+  <td width="600"> <!-- 작성자 임시 -->
+ ${loginUser.ename}
   </td>
  </tr>
  
@@ -135,7 +136,7 @@ table {font-size:11pt; font-family:굴림체;}
 
 
 
-
+<c:if test="${loginUser.admin == 1 }">
 <tr align="center">
   <td colspan="3">
     <input type="button" value="목록" onclick="location.href='noticeServlet?command=notice_List'">  
@@ -146,19 +147,47 @@ table {font-size:11pt; font-family:굴림체;}
   
   </td>
  </tr>
+</c:if>
 
-  <tr height="85">
-  <td align="right">댓글&nbsp;</td>
+<!-- 
+  <tr height="45">
+  <td align="right"></td>
+ 
   <td valign="top"></td> 
-  <td>
-   <textarea name="notcon" rows="4" cols="65"></textarea>
-    <input type="button" value="입력" onclick="location.href='noticeServlet?command=notice_List'">  
+ <td colspan="5">
+						
+
   </td>
- </tr>
+ </tr> -->
  
 
+
+		
+
 </table>
- </form>
+<div class="cmt">
+				<input type="hidden" id="notno" value="${notice.notno }">
+				<input type="hidden" id="id" value="${notice.id}">
+				<table id="reply">
+					<tr>
+						<th> <h5>댓글</h5></th>
+					</tr>
+					<c:forEach var="replyList" items="${replyList }">
+						<tr class="${replyList.comno }">
+							<td class="repmpid">${replyList.empno }</td>
+							<td class="repcontent">${replyList.comcon }</td>
+							<td>${replyList.comdate }</td>
+						</tr>
+					</c:forEach>	
+				</table>
+				<div class="replregi">
+					<p>
+						<textarea rows="2" cols="85" id="content" name="content"></textarea>
+						<button id="regi-reply" >댓글등록</button>
+					</p>
+</div>
+</div>	
+			
 
 </div>
 </div>	

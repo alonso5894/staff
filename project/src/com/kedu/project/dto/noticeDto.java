@@ -7,7 +7,14 @@ public class noticeDto {
 	private String notcon;
 	private String notdate;
 	private int nothits;
+	private String id;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getNotno() {
 		return notno;
 	}
@@ -41,7 +48,8 @@ public class noticeDto {
 	@Override
 	public String toString() {
 		return "noticeDto [notno=" + notno + ", notname=" + notname + ", notcon=" + notcon + ", notdate=" + notdate
-				+ ", nothits=" + nothits + "]";
+				+ ", nothits=" + nothits + ", id=" + id + "]";
 	}
+
 	
 }
