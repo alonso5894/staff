@@ -26,7 +26,6 @@
 
 </script>
 
-
 <title>Insert title here</title>
  <style type="text/css">
 
@@ -165,7 +164,13 @@ table {font-size:11pt; font-family:굴림체;}
 		
 
 </table>
+
+		
+				
+				
 <div class="cmt">
+					
+				
 				<input type="hidden" id="notno" value="${notice.notno }">
 				<input type="hidden" id="id" value="${notice.id}">
 				<table id="reply">
@@ -178,17 +183,16 @@ table {font-size:11pt; font-family:굴림체;}
 							<td class="repcontent">${replyList.comcon }</td>
 							<td>${replyList.comdate }</td>
 						</tr>
-					</c:forEach>	
+					</c:forEach>
+						
 				</table>
-				<div class="replregi">
 					<p>
-						<textarea rows="2" cols="85" id="content" name="content"></textarea>
+						<textarea rows="2" cols="85" id="content" name="content" ></textarea>
 						<button id="regi-reply" >댓글등록</button>
-					</p>
-</div>
+					</p>	
+	
 </div>	
-			
-
+	
 </div>
 </div>	
 </div>

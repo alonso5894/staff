@@ -23,12 +23,13 @@ public class replyDao {
 		return instance;
 	}
 	
-	public List<replyDto> selectAllReply(int notno){
+	public List<replyDto> selectAllReply(String notno){
 		StringBuilder sql = new StringBuilder();
 		sql.append("select c.comno 		");
 		sql.append("	 , c.notno		");
 		sql.append("	 , c.comcon		");
-		sql.append("	 , c.comdel		");
+		sql.append("	 , c.comdate		");
+		sql.append("	 , e.empno		");
 	
 		sql.append("  from com c			");
 		sql.append("	 , notice n			");
@@ -44,7 +45,7 @@ public class replyDao {
 		try{
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, notno);
+			pstmt.setString(1, notno);
 			
 			rs = pstmt.executeQuery();
 			
@@ -56,6 +57,7 @@ public class replyDao {
 				rDto.setComdate(rs.getString("comdate"));
 			
 				rDto.setNotno(rs.getString("notno"));
+				rDto.setEmpno(rs.getString("empno"));
 				
 				list.add(rDto);
 			}
@@ -71,15 +73,15 @@ public class replyDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("insert into com				");
 		sql.append("		(comno				");
-		sql.append("	,	notno				");
-	
+		sql.append("    ,   notno               ");
+		sql.append("	,	empno				");
 		sql.append("	,	comcon					");
 		sql.append("		)						");
 		sql.append("values(							");
-		sql.append("		comno.nextval		");
+		sql.append("		comno.nextval			");
 		sql.append("	,	?						");
 		sql.append("	,	?						");
-	
+		sql.append("	,	?						");
 		sql.append("	)	");
 		
 		Connection conn = null;
@@ -92,8 +94,8 @@ public class replyDao {
 			pstmt = conn.prepareStatement(sql.toString());
 			
 			pstmt.setString(1, rDto.getNotno());
-		
-			pstmt.setString(2, rDto.getComcon());
+			pstmt.setString(2, rDto.getEmpno());
+			pstmt.setString(3, rDto.getComcon());
 			
 			result = pstmt.executeUpdate();
 		}catch(SQLException e){
@@ -133,6 +135,7 @@ public class replyDao {
 				rDto.setComdate(rs.getString("comdate"));
 				rDto.setComno(rs.getInt("comno"));
 				rDto.setNotno(rs.getString("notno"));
+				rDto.setNotno(rs.getString("empno"));
 			
 			}
 		}catch(SQLException e){

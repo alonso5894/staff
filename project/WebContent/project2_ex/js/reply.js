@@ -4,12 +4,12 @@ $( function(){
 	});
 	
 	function addReply(){
-		var url = "empServlet?command=reply_Insert"
+		var url = "noticeServlet?command=reply_Insert"
 		var sendJson = new Object();
 		
-		sendJson.replyContent = $("#content").val();
-		sendJson.noticenum = $("#noticenum").val();
-		sendJson.empid = $("empid").val();
+		sendJson.replyComcon = $("#comcon").val();
+		sendJson.notno = $("#notno").val();
+		sendJson.id = $("id").val();
 		$.ajax({
 			url:url,
 			data:sendJson,
@@ -19,10 +19,10 @@ $( function(){
 				data = JSON.parse(json);
 				
 				$("#reply").append(
-						"<tr class='" + data.empnum + "'>" +
-						"<td>" + data.empname + "</td>" +
-						"<td>" + data.content+ "</td>" +
-						"<td>" + data.writedate +"</td>"+
+						"<tr class='" + data.empno + "'>" +
+						"<td>" + data.ename + "</td>" +
+						"<td>" + data.comcon+ "</td>" +
+						"<td>" + data.comdate +"</td>"+
 						"</tr>");
 				
 			

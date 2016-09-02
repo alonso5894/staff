@@ -15,35 +15,33 @@ import com.kedu.project.dto.replyDto;
 public class ReplyInsertAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
 		replyDao rDao = replyDao.getInstance();
 		replyDto rDto = new replyDto();
-		
 		HttpSession session = request.getSession();
-		rDto.setComcon(request.getParameter("replyComcon"));
-	
+		rDto.setComcon(request.getParameter("replyContent"));
+		rDto.setEmpno((String)session.getAttribute("empno"));
 		rDto.setNotno(request.getParameter("notno"));
-		
 		int result = rDao.insertReply(rDto);
-		
 		JsonObject json = new JsonObject();
-		
 		if(result == 1){
 			rDto = rDao.lastInsert();
 			
 			
-		
+			json.addProperty("empno", rDto.getEmpno());
 			json.addProperty("comcon", rDto.getComcon());
-			json.addProperty("comdel", rDto.getComdel());
+			json.addProperty("comdate", rDto.getComdate());
 			json.addProperty("comno", rDto.getComno());
 			/*json.addProperty("ename", (String)session.getAttribute("ename"));*/
 		}
 		
 		
-		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(json);
+	
 	}
 
 }

@@ -7,6 +7,7 @@ public class replyDto {
 			comcon  VARCHAR2(200) NULL,     -- 댓글내용
 			comdate DATE          NULL,     -- 댓글작성일
 			comdel  CHAR(1)       NULL      -- 댓글삭제여부
+			
 		);*/
 	
 	private int comno;

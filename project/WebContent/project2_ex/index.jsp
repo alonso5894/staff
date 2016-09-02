@@ -136,8 +136,9 @@ body {
 									<tr>
 										<td width="200">
 									<input type="hidden" id="notno" value="${notice.notno}"> 
-										${notice.notname}
-										</td>
+										${notice.notname} 
+										${notice.notdate}
+							
 										
 										
 										
